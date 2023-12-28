@@ -51,24 +51,26 @@ const fs = require("fs");
 // ? 500 Range - server error codes
 
 const server = http.createServer((req, res) => {
-  console.log("req made...", req.url);
-  console.log("req made method", req.method);
+  console.log("req url:", req.url);
+  console.log("req method:", req.method);
 
   // ? Routing Example
   let path = "D:/CAREER/nodeJs-notes/clients-and-servers/views/";
   res.setHeader("Content-type", "text/html");
-  if (req.url === "/") {
+  if (req.url == "/") {
     res.statusCode = 200; //? Code for success
     path += "index.html";
     res.statusCode = 200;
-  } else if (req.url === "/about") {
-    res.statusCode = 301; //? Code for redirects
+  } else if (req.url == "/about") {
     path += "about.html";
-  } else if (req.url === "/about-me") {
+  } else if (req.url == "/about-blah") {
+    console.log("url me");
     //? Redirect Url
     res.statusCode = 301;
     res.setHeader("Location", "/about");
     res.end();
+  } else if (req.url == "/contact") {
+    path += "contact.html";
   } else {
     res.statusCode = 400; //? user and client error codes
     path += "404.html";
